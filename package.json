@@ -1,0 +1,30 @@
+{
+  "name": "zk-complaints",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "dotenv": "^17.2.1",
+    "hardhat": "^2.26.1",
+    "nx": "21.3.9",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "@semaphore-protocol/contracts": "^4.13.0-beta.1",
+    "@semaphore-protocol/group": "^4.13.0-beta.1",
+    "@semaphore-protocol/identity": "^4.13.0-beta.1",
+    "@semaphore-protocol/proof": "^4.13.0-beta.1",
+    "ethers": "^6.15.0"
+  },
+  "nx": {}
+}

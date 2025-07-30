@@ -1,0 +1,78 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dist
+tmp
+out-tsc
+
+# dependencies
+node_modules
+.env
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+.nx/cache
+.nx/workspace-data
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+libs/database/prisma/schema/.env
+.vscode
+
+
+.yarn/install-state.gz
+libs/database/src/gql/generated/*
+!libs/database/src/gql/generated/.gitkeep
+
+
+.vs
+.yarn/install-state.gz
+logs/app.log
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+
+test-project/artifacts/
+test-project/cache/
+test-project/cache.sol
+test-project/coverage/
+test-project/coverage.json
+test-project/typechain/
+test-project/typechain-types/
+test-project/.openzeppelin/unknown-*.json
+
+circuits/**/build/
+circuits/**/*.r1cs
+circuits/**/*.zkey
+circuits/**/*.ptau
+circuits/**/*.wasm
+circuits/**/verification_key.json
+circuits/**/witness.wtns
