@@ -77,10 +77,21 @@ PRIVATE_KEY=<твій приватний ключ>
 npx hardhat run scripts/deploy-verifier.ts --network sepolia
 ```
 
+У консолі побачиш:
+```bash
+    Local SemaphoreVerifier: 0x...<адреса>
+```
+Скрипт також запише адресу в test-project/deployments/sepolia.v2.json.
+
 #### 1.2 Контракт `ComplaintsV2`
 
 ```bash
 npx hardhat run scripts/deploy-v2.ts --network sepolia
+```
+
+У консолі побачиш:
+```bash
+    ComplaintsV2: 0x...<адреса>
 ```
 
 > 🧾 Адреси збережуться в: `test-project/deployments/sepolia.v2.json`
@@ -101,6 +112,11 @@ npx ts-node scripts/add-member.ts seed-3
 npx ts-node scripts/gen-group.ts
 ```
 
+У консолі побачиш:
+```bash
+    Group depth: 2 root: 34180437...794760326635
+```
+
 > 📄 Група → `test-project/examples/group.json`
 
 ---
@@ -109,6 +125,14 @@ npx ts-node scripts/gen-group.ts
 
 ```bash
 npx hardhat run scripts/allow-root.ts --network sepolia
+```
+
+У консолі побачиш:
+```bash
+    [dotenv@17.2.1] injecting env (3) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+    [dotenv@17.2.1] injecting env (0) from .env -- tip: 📡 version env with Radar: https://dotenvx.com/radar
+    Setting root: 3418043718406815991709179687836617871578641094909002310134264798794760326635 allowed: true
+    setRoot tx: 0x369dd2ddd6a9d65b736af10655884ac60917d8b44482269dd1b82c983f4898b0
 ```
 
 ---
