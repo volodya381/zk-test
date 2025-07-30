@@ -36,18 +36,14 @@
 
 🚀 TL;DR (з нуля до працюючого фронта)
 
-    Передумови
-    Node 18/20+, гаманець із трохи ETH у Sepolia, RPC‑URL (Alchemy/Infura/QuickNode).
+Передумови: Node 18/20+, гаманець із трохи ETH у Sepolia, RPC‑URL (Alchemy/Infura/QuickNode).
+🚀 TL;DR (з нуля до працюючого фронта)
 
-
+Передумови: Node 18/20+, гаманець із трохи ETH у Sepolia, RPC‑URL (Alchemy/Infura/QuickNode).
 0) Підготувати бек
 
-```
-    cd test-project
-
-    npm install
-
-```
+cd test-project
+npm install
 
 Створи test-project/.env:
 
@@ -56,22 +52,26 @@ PRIVATE_KEY=<приватний ключ для деплою>
 
 1) Деплой у Sepolia
 
-# 1.1 Верефікатор Semaphore (локальний інстанс)
+1.1 Верефікатор Semaphore (локальний інстанс)
+
 npx hardhat run scripts/deploy-verifier.ts --network sepolia
 
-# 1.2 Основний контракт ComplaintsV2
+1.2 Основний контракт ComplaintsV2
+
 npx hardhat run scripts/deploy-v2.ts --network sepolia
 
     📄 Адреси збережуться в test-project/deployments/sepolia.v2.json.
 
 2) Whitelist → Merkle‑група
 
-# додай учасників (seed → commitment)
+Додай учасників (seed → commitment):
+
 npx ts-node scripts/add-member.ts seed-1
 npx ts-node scripts/add-member.ts seed-2
 npx ts-node scripts/add-member.ts seed-3
 
-# побудуй групу і отримай root
+Побудуй групу і отримай root:
+
 npx ts-node scripts/gen-group.ts
 
     📄 З’явиться/оновиться test-project/examples/group.json.
@@ -87,70 +87,66 @@ npm install
 
 Створи web/.env:
 
-VITE_CONTRACT=<АДРЕСА ComplaintsV2 з test-project/deployments/sepolia.v2.json>
+VITE_CONTRACT=<АДРЕСА ComplaintsV2 з ../test-project/deployments/sepolia.v2.json>
 VITE_CHAIN_ID=11155111
 VITE_DEFAULT_TOPIC=complaints-v1
 
 Скопіюй актуальний group.json:
 
-copy ..\test-project\examples\group.json .\public\group.json (або просто руками перенеси і все)
+copy ..\test-project\examples\group.json .\public\group.json
 
 Запусти фронт:
 
 npm run dev
 
 Відкрий http://localhost:5173 → підключи гаманець → Seed: seed-1 → Topic: backend-complaints → Message → Generate proof & Submit.
+
 🧪 Додаткові корисні скрипти
 
-    Усі запускаються з папки test-project/.
+    (усі запускаються з папки test-project/)
 
-✅ Офчейн‑перевірка пруфа
+Офчейн‑перевірка пруфа
 
 npx ts-node scripts/verify-offchain.ts
 
-Виведе Off-chain verify: true/false для examples/proof.json.
-🧭 Діагностика дозволених root’ів
+Діагностика дозволених root’ів
 
 npx hardhat run scripts/diagnose-root.ts --network sepolia
 
-Покаже адресу контракту, root із group.json і proof.json, та allowedRoots[...].
-🧪 Згенерувати proof (без фронта)
+Згенерувати proof (без фронта)
 
 npx ts-node scripts/gen-proof.ts
 
-Створить/перезапише examples/proof.json (використовує examples/identity.json і examples/group.json).
-📤 Надіслати proof у контракт із файлу
+Надіслати proof у контракт із файлу
 
 npx hardhat run scripts/submit-proof.ts --network sepolia
-
-Спочатку робить staticCall (dry‑run), далі — реальна транза.
 🔁 Типовий цикл оновлення whitelist
 
-    Додай/зміни учасників:
-    npx ts-node scripts/add-member.ts seed-N
+# 1) додай/зміни учасників
+npx ts-node scripts/add-member.ts seed-N
 
-    Перебудуй групу:
-    npx ts-node scripts/gen-group.ts
+# 2) перебудуй групу
+npx ts-node scripts/gen-group.ts
 
-    Дозволь новий root у контракті:
-    npx hardhat run scripts/allow-root.ts --network sepolia
+# 3) дозволь новий root у контракті
+npx hardhat run scripts/allow-root.ts --network sepolia
 
-    Скопіюй новий group.json у фронт:
-    copy ..\test-project\examples\group.json .\web\public\group.json
+# 4) онови групу на фронті
+copy ..\test-project\examples\group.json .\web\public\group.json
 
 ❗️Troubleshooting
 
-Root not allowed (фронт або submit-proof)
+Root not allowed
 — Після зміни групи не запустили allow-root.ts або фронт читає старий web/public/group.json.
 Фікс: gen-group.ts → allow-root.ts → скопіювати group.json у фронт → перезібрати фронт.
 
 Invalid proof
-— Невідповідність групи/рута між фронтом і контрактом, неправильний порядок сигналів, або повторне використання даних.
+— Невідповідність групи/рута між фронтом і контрактом або повторне використання даних.
 Фікс: переконайтеся, що web/public/group.json відповідає дозволеному root в контракті; спробуйте інший Topic або Seed.
 
 Already used
 — Для цієї пари (seed, topic) nullifier уже використаний.
-Фікс: змініть Topic (наприклад, додайте суфікс часу) або використайте інший Seed (іншого члена групи).
+Фікс: змініть Topic (додайте суфікс часу) або використайте інший Seed (іншого члена групи).
 
 Invalid CONTRACT env value на фронті
 — Неправильна адреса в web/.env → VITE_CONTRACT.
