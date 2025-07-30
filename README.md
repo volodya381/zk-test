@@ -12,25 +12,27 @@
 
 📁 Структура
 
-zk-complaints/
-├─ test-project/                # контракти + hardhat-скрипти
-│  ├─ contracts/                # ComplaintsV2.sol (+ імпорт SemaphoreVerifier)
-│  ├─ scripts/                  # утиліти (деплой, whitelist, діагностика і т.д.)
-│  ├─ deployments/              # адреси задеплоєних контрактів (JSON)
-│  │  └─ sepolia.v2.json
-│  └─ examples/                 # локальні артефакти (whitelist/група/пруф)
-│     ├─ members.csv
-│     ├─ group.json
-│     └─ identity.json
-├─ web/                         # фронтенд (Vite + React)
-│  ├─ public/
-│  │  └─ group.json             # копія групи для фронта (оновлюється вручну з test-project/examples/group.json)
-│  ├─ src/
-│  │  └─ App.tsx                # UI + генерація proof та відправка у контракт
-│  └─ .env                      # VITE_CONTRACT, VITE_CHAIN_ID, VITE_DEFAULT_TOPIC
-├─ nx.json
-├─ package.json
-└─ README.md
+```
+    zk-complaints/
+    ├─ test-project/                # контракти + hardhat-скрипти
+    │  ├─ contracts/                # ComplaintsV2.sol (+ імпорт SemaphoreVerifier)
+    │  ├─ scripts/                  # утиліти (деплой, whitelist, діагностика і т.д.)
+    │  ├─ deployments/              # адреси задеплоєних контрактів (JSON)
+    │  │  └─ sepolia.v2.json
+    │  └─ examples/                 # локальні артефакти (whitelist/група/пруф)
+    │     ├─ members.csv
+    │     ├─ group.json
+    │     └─ identity.json
+    ├─ web/                         # фронтенд (Vite + React)
+    │  ├─ public/
+    │  │  └─ group.json             # копія групи для фронта (оновлюється вручну з test-project/examples/group.json)
+    │  ├─ src/
+    │  │  └─ App.tsx                # UI + генерація proof та відправка у контракт
+    │  └─ .env                      # VITE_CONTRACT, VITE_CHAIN_ID, VITE_DEFAULT_TOPIC
+    ├─ nx.json
+    ├─ package.json
+    └─ README.md
+```
 
 🚀 TL;DR (з нуля до працюючого фронта)
 
