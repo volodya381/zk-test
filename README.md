@@ -42,8 +42,9 @@
 
 0) Підготувати бек
 
-cd test-project
-npm install
+    cd test-project
+
+    npm install
 
 Створи test-project/.env:
 
